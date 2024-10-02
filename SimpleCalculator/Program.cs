@@ -35,16 +35,29 @@ class Program
     }
 
     //Tar emot val av operation
-    //TODO: fixa felhantering så att användaren inte kan mata annat än giltiga operationer
     public static char GetOperation(string prompt)
     {
         while (true)
         {
             Console.WriteLine(prompt);
             char operation = Console.ReadKey().KeyChar;
-            return operation;
+            //kontrollera att inmatad operation är giltig ( + - * /)
+            switch (operation)
+            {
+                case '+':
+                case '-':
+                case '*':
+                case '/':
+                return operation;
+                default:
+                Console.Clear();
+                Console.WriteLine("Ogiltig operation, väl mellan: ( + - * / )\nTryck ENTER för att fortsätta...");
+                Console.ReadLine();
+                    break;
+            }
         }
     }
+
     //Tar emot användaren tal
     //TODO: fixa felhantering så att användaren inte kan mata annat än numreriska värden
     //TODO: fixa så att om användaren kan mata in ',' som decimal
@@ -58,6 +71,7 @@ class Program
             return userInput;
         }
     }
+
     //Skriver ut resultatet i konsol
     public static void DisplayResult(double a, double b, double result, char operation)
     {
@@ -70,16 +84,19 @@ class Program
     {
         return a + b;
     }
+
     //Hanterar subraktion
     public static double Subtract(double a, double b)
     {
         return a - b;
     }
+
     //Hanterar multiplikation
     public static double Multiply(double a, double b)
     {
         return a * b;
     }
+    
     //Hanterar division
     public static double Divide(double a, double b)
     {
