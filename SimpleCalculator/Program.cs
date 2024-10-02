@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-
+﻿
 namespace SimpleCalculator;
 
 class Program
@@ -59,7 +58,6 @@ class Program
     }
 
     //Tar emot användaren inmating, validerar och returnerar om giltig inmatning
-    //TODO: fixa så att om användaren kan mata in ',' som decimal
     public static double GetNumber(string prompt, char operation)
     {
         while (true)
