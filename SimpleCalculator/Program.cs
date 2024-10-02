@@ -6,10 +6,8 @@ class Program
     {
         Console.WriteLine("Enkel Kalkylator");
         char operation = GetOperation("Ange vilken operation du vill utföra\n( + - * /)");
-        Console.WriteLine("\nAnge första talet: ");
-        double num1 = Convert.ToDouble(Console.ReadLine());
-        Console.WriteLine("\nAnge andra talet: ");
-        double num2 = Convert.ToDouble(Console.ReadLine());
+        double num1 = GetNumber("\nAnge första talet: ");
+        double num2 = GetNumber("\nAnge andra talet: ");
 
         double result = 0;
         switch (operation)
@@ -37,7 +35,6 @@ class Program
     //Tar emot val av operation
     public static char GetOperation(string prompt)
     {
-
         while (true)
         {
             Console.WriteLine(prompt);
@@ -45,6 +42,15 @@ class Program
             return operation;
         }
     }
-
+    //Tar emot användaren tal
+    public static double GetNumber(string prompt)
+    {
+        while (true)
+        {
+            Console.WriteLine(prompt);
+            double userInput = Convert.ToDouble(Console.ReadLine());
+            return userInput;
+        }
+    }
 }
 
