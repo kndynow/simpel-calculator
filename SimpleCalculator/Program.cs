@@ -8,8 +8,8 @@ class Program
     {
         Console.WriteLine("Enkel Kalkylator");
         char operation = GetOperation("Ange vilken operation du vill utföra\n( + - * / )");
-        double num1 = GetNumber("\nAnge första talet: ");
-        double num2 = GetNumber("\nAnge andra talet: ");
+        double num1 = GetNumber("\nAnge första talet: ", operation);
+        double num2 = GetNumber("\nAnge andra talet: ", operation);
 
         double result = 0;
         switch (operation)
@@ -18,13 +18,13 @@ class Program
                 result = Add(num1, num2);
                 break;
             case '-':
-                result = Subtract(num1,num2);
+                result = Subtract(num1, num2);
                 break;
             case '*':
-                result = Multiply(num1,num2);
+                result = Multiply(num1, num2);
                 break;
             case '/':
-                result = Divide(num1,num2);
+                result = Divide(num1, num2);
                 break;
             default:
                 Console.WriteLine("Ogiltig operation.");
@@ -48,27 +48,39 @@ class Program
                 case '-':
                 case '*':
                 case '/':
-                return operation;
+                    return operation;
                 default:
-                Console.Clear();
-                Console.WriteLine("Ogiltig operation, väl mellan: ( + - * / )\nTryck ENTER för att fortsätta...");
-                Console.ReadLine();
+                    Console.Clear();
+                    Console.WriteLine("Ogiltig operation, väl mellan: ( + - * / )\nTryck ENTER för att fortsätta...");
+                    Console.ReadLine();
                     break;
             }
         }
     }
 
-    //Tar emot användaren tal
-    //TODO: fixa felhantering så att användaren inte kan mata annat än numreriska värden
+    //Tar emot användaren inmating, validerar och returnerar om giltig inmatning
     //TODO: fixa så att om användaren kan mata in ',' som decimal
-    //TODO: fixa så att användaren inte kan mata in 0 som täljare vid division
-    public static double GetNumber(string prompt)
+    public static double GetNumber(string prompt, char operation)
     {
         while (true)
         {
+            Console.Clear();
             Console.WriteLine(prompt);
-            double userInput = Convert.ToDouble(Console.ReadLine());
-            return userInput;
+            //Kontrollerar så att input är ett numreriskt värde
+            if (double.TryParse(Console.ReadLine(), out double userInput))
+            {
+                //Kontrollerar ifall operation är division '/' och om user input är 0, om sant meddelar användare
+                //att detta är ogiltigt
+                if (operation == '/' && userInput == 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Vid division får täljaren inte vara 0. Försök igen.\nTryck ENTER för att fortsätta...");
+                    Console.ReadLine();
+                    continue;
+                }
+                return userInput;
+            }
+            Console.WriteLine("Du måste ange ett numreriskt värde.");
         }
     }
 
@@ -96,7 +108,7 @@ class Program
     {
         return a * b;
     }
-    
+
     //Hanterar division
     public static double Divide(double a, double b)
     {
