@@ -7,7 +7,7 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Enkel Kalkylator");
-        char operation = GetOperation("Ange vilken operation du vill utföra\n( + - * /)");
+        char operation = GetOperation("Ange vilken operation du vill utföra\n( + - * / )");
         double num1 = GetNumber("\nAnge första talet: ");
         double num2 = GetNumber("\nAnge andra talet: ");
 
@@ -35,6 +35,7 @@ class Program
     }
 
     //Tar emot val av operation
+    //TODO: fixa felhantering så att användaren inte kan mata annat än giltiga operationer
     public static char GetOperation(string prompt)
     {
         while (true)
@@ -45,6 +46,9 @@ class Program
         }
     }
     //Tar emot användaren tal
+    //TODO: fixa felhantering så att användaren inte kan mata annat än numreriska värden
+    //TODO: fixa så att om användaren kan mata in ',' som decimal
+    //TODO: fixa så att användaren inte kan mata in 0 som täljare vid division
     public static double GetNumber(string prompt)
     {
         while (true)
