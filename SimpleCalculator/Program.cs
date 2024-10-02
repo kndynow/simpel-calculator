@@ -5,8 +5,7 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Enkel Kalkylator");
-        Console.WriteLine("Ange operation (+, -, *, /): ");
-        char operation = Console.ReadKey().KeyChar;
+        char operation = GetOperation("Ange vilken operation du vill utföra\n( + - * /)");
         Console.WriteLine("\nAnge första talet: ");
         double num1 = Convert.ToDouble(Console.ReadLine());
         Console.WriteLine("\nAnge andra talet: ");
@@ -34,5 +33,18 @@ class Program
         Console.WriteLine($"Resultat: {result}");
         Console.ReadLine();
     }
+
+    //Tar emot val av operation
+    public static char GetOperation(string prompt)
+    {
+
+        while (true)
+        {
+            Console.WriteLine(prompt);
+            char operation = Console.ReadKey().KeyChar;
+            return operation;
+        }
+    }
+
 }
 
