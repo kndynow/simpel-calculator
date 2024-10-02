@@ -1,4 +1,6 @@
-﻿namespace SimpleCalculator;
+﻿using System.ComponentModel;
+
+namespace SimpleCalculator;
 
 class Program
 {
@@ -13,22 +15,22 @@ class Program
         switch (operation)
         {
             case '+':
-                result = num1 + num2;
+                result = Add(num1, num2);
                 break;
             case '-':
-                result = num1 - num2;
+                result = Subtract(num1,num2);
                 break;
             case '*':
-                result = num1 * num2;
+                result = Multiply(num1,num2);
                 break;
             case '/':
-                result = num1 / num2;
+                result = Divide(num1,num2);
                 break;
             default:
                 Console.WriteLine("Ogiltig operation.");
                 break;
         }
-        DisplayResult(num1,num2,result,operation);
+        DisplayResult(num1, num2, result, operation);
         Console.ReadLine();
     }
 
@@ -53,9 +55,32 @@ class Program
         }
     }
     //Skriver ut resultatet i konsol
-    public static void DisplayResult(double a, double b, double result, char operation){
+    public static void DisplayResult(double a, double b, double result, char operation)
+    {
         Console.Clear();
         Console.WriteLine($"Resultat:\n{a} {operation} {b} = {result}");
     }
+
+    //Hanterar addition
+    public static double Add(double a, double b)
+    {
+        return a + b;
+    }
+    //Hanterar subraktion
+    public static double Subtract(double a, double b)
+    {
+        return a - b;
+    }
+    //Hanterar multiplikation
+    public static double Multiply(double a, double b)
+    {
+        return a * b;
+    }
+    //Hanterar division
+    public static double Divide(double a, double b)
+    {
+        return a / b;
+    }
+
 }
 
