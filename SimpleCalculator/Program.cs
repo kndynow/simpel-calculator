@@ -28,7 +28,7 @@ class Program
                 Console.WriteLine("Ogiltig operation.");
                 break;
         }
-        Console.WriteLine($"Resultat: {result}");
+        DisplayResult(num1,num2,result,operation);
         Console.ReadLine();
     }
 
@@ -51,6 +51,11 @@ class Program
             double userInput = Convert.ToDouble(Console.ReadLine());
             return userInput;
         }
+    }
+    //Skriver ut resultatet i konsol
+    public static void DisplayResult(double a, double b, double result, char operation){
+        Console.Clear();
+        Console.WriteLine($"Resultat:\n{a} {operation} {b} = {result}");
     }
 }
 
